@@ -4,7 +4,7 @@ require_once 'vendor/connect.php';
 global $connect;
 
 $id_teacher=$_SESSION['id_teacher']['id'];
-$groups = mysqli_query($connect, "SELECT name FROM `groups` WHERE `id_teacher`= '$id_teacher' ORDER BY `name`;");
+$groups = mysqli_query($connect, "SELECT name, id FROM `groups` WHERE `id_teacher`= '$id_teacher' ORDER BY `name`;");
 $num = mysqli_num_rows($groups);
 $name_teacher1 = mysqli_query($connect, "SELECT `name`,`surname` FROM `teachers` WHERE `id`= '$id_teacher';");
 $name_teacher = mysqli_fetch_assoc($name_teacher1);
@@ -36,7 +36,7 @@ $name_teacher = mysqli_fetch_assoc($name_teacher1);
         <tbody>
         <?php for($i = 0; $i<$num;$i++){//Вывод таблицы
             $name =mysqli_fetch_assoc($groups);
-            $url = "groups.php".'?'.'group_name='.$name['name'];
+            $url = "groups.php".'?'.'group_name='.$name['id'];
             $url1="window.location.href='$url'";
             echo ("<tr > <td > ");
             echo('<div class="name_group"');

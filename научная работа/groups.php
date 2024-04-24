@@ -11,9 +11,10 @@ else{
     $group_name=$_SESSION['name_group'];
 }
 
-$res1= mysqli_query($connect,"SELECT `id` FROM `groups` WHERE `name`= '$group_name'");
+$res1= mysqli_query($connect,"SELECT `id`,`name` FROM `groups` WHERE `id`= '$group_name'");
 $id_group1=mysqli_fetch_assoc($res1);
 $id_group=$id_group1['id'];
+$name_group=$id_group1['name'];
 $_SESSION['id_group']=$id_group;
 $_SESSION['name_group']=$group_name;
 $res = mysqli_query($connect, "SELECT `id`, `name`,`surmane`,`module1`,`module2`,`module3`,`exam`,`result` FROM `students` WHERE `id_group`='$id_group' ORDER BY `surmane` ");
@@ -62,7 +63,7 @@ function Echosmith($param): void
     <form method="post" action="profile.php">
         <div class="exit"> <button type="submit" class="exit">Группы</button></div>
     </form>
-    <h1> <?php echo($group_name)?>
+    <h1> <?php echo($name_group)?>
     </h1>
     <br>
     <br>
